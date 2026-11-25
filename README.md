@@ -45,16 +45,16 @@ Built so far (not deployed yet): an API Gateway HTTP API → `health` and `creat
 
 ## Repository layout
 
-| Path | What |
-|---|---|
-| `apps/web` | React + Vite + TypeScript booking app (Vitest + React Testing Library) |
-| `apps/mobile` | Expo app (placeholder until week 7) |
-| `services/api` | Lambda handlers for the HTTP API |
-| `adapters/carrier-go` | Carrier adapter contract and a Go implementation |
-| `packages/shared-types` | Domain types and validation shared by every TypeScript package |
-| `infra` | AWS CDK app (TypeScript) |
-| `docs/adr` | Architecture decision records |
-| `scripts/teardown.ps1` | Destroys all stacks and lists leftover tagged resources |
+| Path                    | What                                                                   |
+| ----------------------- | ---------------------------------------------------------------------- |
+| `apps/web`              | React + Vite + TypeScript booking app (Vitest + React Testing Library) |
+| `apps/mobile`           | Expo app (placeholder until week 7)                                    |
+| `services/api`          | Lambda handlers for the HTTP API                                       |
+| `adapters/carrier-go`   | Carrier adapter contract and a Go implementation                       |
+| `packages/shared-types` | Domain types and validation shared by every TypeScript package         |
+| `infra`                 | AWS CDK app (TypeScript)                                               |
+| `docs/adr`              | Architecture decision records                                          |
+| `scripts/teardown.ps1`  | Destroys all stacks and lists leftover tagged resources                |
 
 ## Getting started
 
@@ -80,16 +80,16 @@ npm run dev:web
 
 ## Progress
 
-| Week | Focus | Status |
-|---|---|---|
-| 1 | TypeScript and the React booking UI | In progress |
-| 2 | CDK, API Gateway and Lambda | Planned |
-| 3 | DynamoDB single-table and Aurora ledger | Planned |
-| 4 | Event-driven tracking, idempotency and DLQs | Planned |
-| 5 | Step Functions drop-off and reclaim journeys | Planned |
-| 6 | Pluggable carrier adapters (TS and Go) | Planned |
-| 7 | React Native (Expo) app | Planned |
-| 8 | CI/CD, observability and load testing | Planned |
+| Week | Focus                                        | Status      |
+| ---- | -------------------------------------------- | ----------- |
+| 1    | TypeScript and the React booking UI          | In progress |
+| 2    | CDK, API Gateway and Lambda                  | Planned     |
+| 3    | DynamoDB single-table and Aurora ledger      | Planned     |
+| 4    | Event-driven tracking, idempotency and DLQs  | Planned     |
+| 5    | Step Functions drop-off and reclaim journeys | Planned     |
+| 6    | Pluggable carrier adapters (TS and Go)       | Planned     |
+| 7    | React Native (Expo) app                      | Planned     |
+| 8    | CI/CD, observability and load testing        | Planned     |
 
 ## Decisions
 

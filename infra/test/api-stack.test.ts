@@ -15,9 +15,10 @@ describe('ApiStack', () => {
   });
 
   it('exposes the versioned parcel route and a health check', () => {
-    const routeKeys = Object.values(template.findResources('AWS::ApiGatewayV2::Route')).map(
-      (route) => route.Properties.RouteKey,
-    );
+    const routes = Object.values(template.findResources('AWS::ApiGatewayV2::Route')) as Array<{
+      Properties: { RouteKey: string };
+    }>;
+    const routeKeys = routes.map((route) => route.Properties.RouteKey);
     expect(routeKeys.sort()).toEqual(['GET /health', 'POST /v1/parcels']);
   });
 

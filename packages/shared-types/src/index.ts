@@ -66,9 +66,7 @@ export function normalisePostcode(value: string): string {
 
 export type FieldErrors = Partial<Record<string, string>>;
 
-export type BookingValidation =
-  | { ok: true; value: Booking }
-  | { ok: false; errors: FieldErrors };
+export type BookingValidation = { ok: true; value: Booking } | { ok: false; errors: FieldErrors };
 
 /**
  * Validates untrusted input (a form submission or an API request body).

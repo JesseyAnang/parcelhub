@@ -1,6 +1,13 @@
+import type { Parcel } from '@parcelhub/shared-types';
 import { describe, expect, it } from 'vitest';
 import { handler } from './create-parcel';
 import { handler as health } from './health';
+
+interface ErrorBody {
+  error: { code: string; message: string; details?: unknown };
+}
+
+const parseBody = <T>(res: { body?: string }) => JSON.parse(res.body ?? '') as T;
 
 const booking = {
   journey: 'COLLECTION',
@@ -17,7 +24,7 @@ describe('POST /v1/parcels', () => {
     const res = await handler(request(JSON.stringify(booking)));
 
     expect(res.statusCode).toBe(201);
-    const parcel = JSON.parse(res.body as string);
+    const parcel = parseBody<Parcel>(res);
     expect(parcel).toMatchObject({ status: 'BOOKED', booking });
     expect(parcel.id).toMatch(/^[0-9a-f-]{36}$/);
   });
@@ -30,13 +37,13 @@ describe('POST /v1/parcels', () => {
   it('rejects malformed JSON', async () => {
     const res = await handler(request('{not json'));
     expect(res.statusCode).toBe(400);
-    expect(JSON.parse(res.body as string).error.code).toBe('INVALID_JSON');
+    expect(parseBody<ErrorBody>(res).error.code).toBe('INVALID_JSON');
   });
 
   it('returns field errors for an invalid booking', async () => {
     const res = await handler(request(JSON.stringify({ ...booking, senderPostcode: 'nope' })));
     expect(res.statusCode).toBe(400);
-    expect(JSON.parse(res.body as string).error.details).toEqual({ senderPostcode: 'Enter a valid UK postcode' });
+    expect(parseBody<ErrorBody>(res).error.details).toEqual({ senderPostcode: 'Enter a valid UK postcode' });
   });
 });
 
