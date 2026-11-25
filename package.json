@@ -1,0 +1,25 @@
+{
+  "name": "parcelhub",
+  "private": true,
+  "description": "Cloud-based parcel services platform: drop-off and collection journeys, carrier integrations, transactions, tracking and reclaim.",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "services/*",
+    "infra"
+  ],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "dev:web": "npm run dev -w @parcelhub/web",
+    "synth": "npm run synth -w @parcelhub/infra"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
